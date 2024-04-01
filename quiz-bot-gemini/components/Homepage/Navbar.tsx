@@ -8,7 +8,7 @@ const navItems = [
         path: '#'
     },
     {
-        name: 'Feature',
+        name: 'Features',
         path: '#'
     },
     {
