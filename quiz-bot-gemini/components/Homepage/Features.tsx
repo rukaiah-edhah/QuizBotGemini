@@ -4,7 +4,7 @@ import { AiFillThunderbolt } from "react-icons/ai";
 
 export default function Features() {
   return (
-    <div className="bg-violet-300 py-40 w-full">
+    <div id="features" className="bg-violet-300 py-40 w-full">
       <h2 className="text-center text-5xl font-bold text-black mb-10">
         How QuizBot Gemini Works
       </h2>
