@@ -12,7 +12,7 @@ export default function Hero() {
           Engage with fun quizzes on your chosen topic.
         </p>
         <Link
-          href="/"
+          href="/chat"
           className="inline-block bg-white text-black font-medium py-4 px-10 rounded hover:bg-purple-400 transition-colors duration-300"
         >
           Get Started
