@@ -1,15 +1,15 @@
 import Link from "next/link"
 import { MdQuiz } from "react-icons/md";
+import ResNavbar from "./ResNavbar";
 
-
-const navItems = [
+export const navItems = [
     {
         name: 'Home',
         path: '#'
     },
     {
-        name: 'Feature',
-        path: '#'
+        name: 'Features',
+        path: '#features'
     },
     {
         name: 'QuizBot Gemini',
@@ -25,14 +25,14 @@ const navItems = [
     },
 ]
 
-const title = [...navItems.filter(items => items.name === 'QuizBot Gemini')]
-const end = [...navItems.slice(-2)]
+export const title = [...navItems.filter(items => items.name === 'QuizBot Gemini')]
+export const end = [...navItems.slice(-2)]
 
 export default function Navbar(){
     return(
         <nav className="sticky flex flex-col w-full max-w-full top-0 z-10 bg-white bg-opacity-70 rounded-full px-4 py-2 h-max backdrop-blur-2xl backdrop-saturate-200">
             <div className="flex items-center justify-between p-3 text-black">
-                <ul className="flex flex-row gap-6 justify-center">
+                <ul className="lg:flex flex-row gap-6 justify-center hidden">
                     {navItems.slice(0,2).map((items: any) => (
                         <div key={items.name} className="">
                             <li>
@@ -47,7 +47,7 @@ export default function Navbar(){
                     ))}
                 </ul>
 
-                <ul>
+                <ul className="hidden lg:block">
                     {title.map((t) => (
                         <div key={t.name}>
                             <li className="gap-2 font-bold hover:cursor-pointer flex flex-row ">
@@ -61,7 +61,7 @@ export default function Navbar(){
                         </div>
                     ))}
                 </ul>
-                <ul className="flex flex-row gap-6 justify-center">
+                <ul className="hidden lg:flex flex-row gap-6 justify-center">
                     {end.map((e) => (
                         <div key={e.name}>
                             <li>
@@ -73,6 +73,8 @@ export default function Navbar(){
                         </div>
                     ))}
                 </ul>
+                
+                <ResNavbar />
             </div>
         </nav>
     )
