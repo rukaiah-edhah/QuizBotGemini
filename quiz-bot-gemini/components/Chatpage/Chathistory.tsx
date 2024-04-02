@@ -12,7 +12,7 @@ export default function ChatHistory(){
     return(
         <>
             <div className="flex flex-col overflow-auto h-full">
-                <Card className="w-full h-full border-none flex flex-col p-2 overflow-auto">
+                <Card className="w-full h-full border bg-inherit border-black/20 flex flex-col p-2 overflow-auto">
                     <small className="opacity-70">Today</small>
                     <CardContent>
                         {list_items.map((l) => (
