@@ -5,8 +5,8 @@ export default function Chat(){
 
     return(
         <>
-            <div className="w-full h-full bg-inherit flex flex-col justify-between p-2">
-                <div className="flex items-center justify-center ">
+            <div className="w-full h-4/5 box-border bg-inherit flex flex-col justify-between p-2 ">
+                <div className="flex items-start justify-center ">
                     <ChatStartup />
                 </div>
                 <div className="">

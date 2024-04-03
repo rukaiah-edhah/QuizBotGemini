@@ -8,6 +8,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
+import { Button } from "../ui/button";
 import { IoMdMenu} from "react-icons/io";
 import ChatHistorySheet from "../Chatpage/chat-history-sheet";
 
@@ -23,9 +24,9 @@ export default function ChatHistory(){
             <div className="flex flex-col  h-full">
                 <Sheet>
                     <SheetTrigger><IoMdMenu className="w-6 h-6 mr-2"/></SheetTrigger>
-                    <SheetContent side="left" className="bg-[#f5f5f5] text-black rounded-xl overflow-auto w-3/5 lg:w-1/5">
+                    <SheetContent side="left" className=" border-none rounded-xl overflow-auto w-3/5 lg:w-1/5">
                         <SheetHeader>
-                            <SheetTitle className="text-black"> 
+                            <SheetTitle className="opacity-70"> 
                                 <small>Today</small>
                             </SheetTitle>
                         </SheetHeader>
@@ -34,12 +35,14 @@ export default function ChatHistory(){
                                 list_items={list_items}
                             />
                         </div>
-                        <div className="fixed bottom-14 text-white items-center justify-center">
+                        <div className="fixed bottom-14 items-center justify-center">
                             <Link
                                 href="/"
-                                className="px-4 py-1 bg-black rounded-lg"
+                                className=""
                             >
-                                Back
+                                <Button className="px-7 bg-black">
+                                    Back
+                                </Button>
                             </Link>
                         </div>
                     </SheetContent>
