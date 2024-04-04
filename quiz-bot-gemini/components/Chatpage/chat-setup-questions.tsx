@@ -19,11 +19,19 @@ export default function ChatSetupQuestions(){
                     <input 
                         type="text"
                         className="w-full border border-violet-200 focus:outline-none focus:border-black/40 p-2 rounded-xl mt-2"
-                        placeholder="Type your desired number"
+                        placeholder="Enter your desired number"
                     />
                 </div>
                 <div className="w-full my-5">
-                    <p>What subject would you like to challenge yourself with?</p>
+                    <p>Question Level</p>
+                    <select id="question-level" name="question-level" className="border border-violet-200 p-2 rounded-xl mt-2 focus:outline-none ">
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                    </select>
+                </div>
+                <div className="w-full my-5">
+                    <p>Question Type</p>
                     <select id="question-type" name="question-type" className="border border-violet-200 p-2 rounded-xl mt-2 focus:outline-none ">
                         <option value="multiple choice">Multiple Choice</option>
                         <option value="true/false">True/False</option>

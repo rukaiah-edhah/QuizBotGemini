@@ -5,12 +5,12 @@ import ResNavbar from "./ResNavbar";
 
 export const navItems = [
     {
-        name: 'Home',
+        name: 'QuizBot Gemini',
         path: '#'
     },
     {
-        name: 'QuizBot Gemini',
-        path: '#'
+        name: 'Quizzara',
+        path: '/chat'
     },
     {
         name: 'Contact Us',
@@ -23,7 +23,7 @@ export const navItems = [
 ]
 
 export const title = [...navItems.filter(items => items.name === 'QuizBot Gemini')]
-export const end = [...navItems.slice(-2)]
+export const end = [...navItems.slice(-3)] 
 
 export default function Navbar(){
     return(
