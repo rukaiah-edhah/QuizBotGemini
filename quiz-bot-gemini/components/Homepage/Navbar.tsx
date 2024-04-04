@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { MdQuiz } from "react-icons/md";
+//import { MdQuiz } from "react-icons/md";
+import { PiCirclesThreeFill } from "react-icons/pi";
 import ResNavbar from "./ResNavbar";
 
 export const navItems = [
@@ -8,16 +9,12 @@ export const navItems = [
         path: '#'
     },
     {
-        name: 'Features',
-        path: '#features'
-    },
-    {
         name: 'QuizBot Gemini',
         path: '#'
     },
     {
         name: 'Contact Us',
-        path: '#'
+        path: 'https://sites.google.com/view/teamgoalgetters/home'
     },
     {
         name: 'Login',
@@ -32,7 +29,7 @@ export default function Navbar(){
     return(
         <nav className="sticky flex flex-col w-full max-w-full top-0 z-10 bg-white bg-opacity-70 rounded-full px-4 py-2 h-max backdrop-blur-2xl backdrop-saturate-200">
             <div className="flex items-center justify-between p-3 text-black">
-                <ul className="lg:flex flex-row gap-6 justify-start hidden">
+                <ul className=" flex-row gap-6 justify-center hidden">
                     {navItems.slice(0,2).map((items: any) => (
                         <div key={items.name} className="">
                             <li>
@@ -51,7 +48,7 @@ export default function Navbar(){
                     {title.map((t) => (
                         <div key={t.name}>
                             <li className="gap-2 font-bold hover:cursor-pointer flex flex-row ">
-                                <MdQuiz className="w-5 h-5 inline mx-auto" />
+                                <PiCirclesThreeFill className="w-5 h-5 inline mx-auto" />
                                 <p
                                     className="inline align-middle"
                                 >

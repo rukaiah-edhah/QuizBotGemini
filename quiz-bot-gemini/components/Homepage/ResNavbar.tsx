@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/sheet"
 import { navItems, title, end } from "@/components/Homepage/Navbar";
 import { IoMdMenu} from "react-icons/io";
-import { MdQuiz } from "react-icons/md";
+import { PiCirclesThreeFill } from "react-icons/pi";
 
 
 export default function ResNavbar(){
@@ -21,7 +21,7 @@ export default function ResNavbar(){
                     <SheetHeader>
                         {title.map((t) => (
                             <SheetTitle key={t.name}>
-                                <MdQuiz className="w-5 h-5 inline mx-auto mr-2" />
+                                <PiCirclesThreeFill className="w-5 h-5 inline mx-auto mr-2" />
                                 <p
                                     className="inline align-middle"
                                 >
@@ -32,7 +32,7 @@ export default function ResNavbar(){
                     </SheetHeader>
                     <div className="flex flex-col items-center justify-center p-10 gap-2">
                         <ul className="flex flex-col gap-2 text-center w-full">
-                            {navItems.slice(0, 2).map((items: any) => (
+                            {navItems.slice(0, 1).map((items: any) => (
                                 <div key={items.name}>
                                         <li className="w-full border border-white border-opacity-10 p-2 rounded-xl">
                                             <SheetClose asChild>
@@ -46,7 +46,6 @@ export default function ResNavbar(){
                                 </div>
                             ))}
                         </ul>
-
                         <ul className="flex flex-col gap-2 text-center w-full">
                             {end.map((e) => (
                                 <div key={e.name}>
