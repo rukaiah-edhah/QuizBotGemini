@@ -9,7 +9,7 @@ export default function ChatStartup(){
     return(
         <>
             <Image 
-                src="/AI.png"
+                src="/Quizzara.png"
                 width={50}
                 height={50}
                 alt="ai image"

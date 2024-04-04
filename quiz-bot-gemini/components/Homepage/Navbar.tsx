@@ -32,7 +32,7 @@ export default function Navbar(){
     return(
         <nav className="sticky flex flex-col w-full max-w-full top-0 z-10 bg-white bg-opacity-70 rounded-full px-4 py-2 h-max backdrop-blur-2xl backdrop-saturate-200">
             <div className="flex items-center justify-between p-3 text-black">
-                <ul className="lg:flex flex-row gap-6 justify-center hidden">
+                <ul className="lg:flex flex-row gap-6 justify-start hidden">
                     {navItems.slice(0,2).map((items: any) => (
                         <div key={items.name} className="">
                             <li>
