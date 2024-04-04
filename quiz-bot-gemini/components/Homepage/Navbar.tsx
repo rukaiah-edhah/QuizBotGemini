@@ -18,7 +18,7 @@ export const navItems = [
     },
     {
         name: 'Login',
-        path: '#'
+        path: '/signup'
     },
 ]
 
