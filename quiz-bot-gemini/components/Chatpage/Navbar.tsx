@@ -1,6 +1,7 @@
 import { PiCirclesThreeFill } from "react-icons/pi";
 import Link from "next/link";
 import ChatHistory from "./Chathistory";
+import { metamorphouse } from "@/app/layout";
 
 export default function Navbar(){
     return (
@@ -9,7 +10,9 @@ export default function Navbar(){
                 <ChatHistory />
                 <div className="flex flex-row gap-2">
                     <PiCirclesThreeFill className="w-6 h-6"/>
-                    <h1 className="font-bold flex place-content-center">
+                    <h1 className={`font-bold flex place-content-center
+                        ${metamorphouse.className}
+                    `}>
                         QuizBot Gemini
                     </h1>
                 </div>

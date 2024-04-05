@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Metamorphous } from "next/font/google";
 import "./globals.css";
 
 
 const inter = Inter({ 
   variable: '--font-inter',
   subsets: ["latin"] 
+});
+
+export const metamorphouse = Metamorphous({
+  subsets: ['latin'],
+  variable: '--font-metamorphous',
+  weight: ['400'],
 });
 
 export const metadata: Metadata = {

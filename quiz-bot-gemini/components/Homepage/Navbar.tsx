@@ -2,6 +2,7 @@ import Link from "next/link"
 //import { MdQuiz } from "react-icons/md";
 import { PiCirclesThreeFill } from "react-icons/pi";
 import ResNavbar from "./ResNavbar";
+import { metamorphouse } from "@/app/layout";
 
 export const navItems = [
     {
@@ -47,10 +48,12 @@ export default function Navbar(){
                 <ul className="hidden lg:block">
                     {title.map((t) => (
                         <div key={t.name}>
-                            <li className="gap-2 font-bold hover:cursor-pointer flex flex-row ">
+                            <li className="gap-2 font-bold hover:cursor-pointer flex flex-row">
                                 <PiCirclesThreeFill className="w-5 h-5 inline mx-auto" />
                                 <p
-                                    className="inline align-middle"
+                                    className={`inline align-middle
+                                        ${metamorphouse.className}
+                                    `}
                                 >
                                     {t.name}
                                 </p>
