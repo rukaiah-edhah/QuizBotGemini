@@ -3,43 +3,22 @@ import React, { useState } from 'react';
 import Link from "next/link";
 import { Button } from "../ui/button";
 
-export default function Signup() {
+export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-    
-        const response = await fetch('http://localhost:3001/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email: email,
-                password: password,
-                confirmPassword: confirmPassword,
-            }),
-        });
-    
-        const data = await response.json();
-    
-        if (response.status === 201) {
-            // Handle successful signup
-            console.log('Success:', data);
-            // Optionally redirect user or clear form
-        } else {
-            // Handle errors or validation issues
-            console.log('Error:', data.message);
-        }
-    };    
+        // Perform login logic here (backend integration).
+        console.log('Email:', email);
+        console.log('Password:', password);
+    };
 
     return (
         <>  
             <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center">
                 <div className="mb-4">
-                    <h1 className="text-violet-700 mb-9">Sign Up</h1>
+                    <h1 className="text-violet-700 mb-9">Login</h1>
                     <label htmlFor="email" className="block text-gray-700">Email:</label>
                     <input 
                         type="email" 
@@ -63,27 +42,14 @@ export default function Signup() {
                         required 
                     />
                 </div>
-                <div className="mb-4">
-                    <label htmlFor="confirmPassword" className="block text-gray-700">Confirm Password:</label>
-                    <input 
-                        type="password" 
-                        id="confirmPassword" 
-                        name="confirmPassword" 
-                        value={confirmPassword} 
-                        onChange={(e) => setConfirmPassword(e.target.value)} 
-                        className="border border-gray-300 rounded-md py-2 px-4 text-black focus:outline-none focus:border-blue-500"
-                        required 
-                    />
-                </div>
                 <Button type="submit" className="px-5 bg-violet-700 py-2 text-white rounded-md hover:bg-gray-900">
-                    Sign Up
+                    Login
                 </Button>
             </form>
             <div className="flex items-start justify-center mt-4">
-                <Link href="/login" className="px-5 bg-violet-700 py-2 text-white rounded-md hover:bg-gray-900">Login</Link>
+                <Link href="/signup" className="px-5 bg-violet-700 py-2 text-white rounded-md hover:bg-gray-900">Sign Up</Link>
                 <Link href="/" className="px-5 bg-violet-700 py-2 ml-3 text-white rounded-md hover:bg-gray-900">Back</Link>
             </div>
         </>
     );
 }
-
