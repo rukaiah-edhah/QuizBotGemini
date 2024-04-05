@@ -1,3 +1,6 @@
+import { AI } from '@/app/action';
+import { Toaster } from '@/components/ui/toaster';
+
 export default function ChatLayout({
     children,
 }: Readonly<{
@@ -5,9 +8,12 @@ export default function ChatLayout({
 }>) {
     return(
         <>
-            <main>
-                {children}
-            </main>
+            <Toaster />
+            <AI>
+                <main>
+                    {children}
+                </main>
+            </AI>
         </>
     )
 }

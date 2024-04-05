@@ -1,16 +1,88 @@
-import ChatInput from "./ChatInput"
-import ChatStartup from "./chat-startup"
+'use client'
+
+import { useEffect, useRef, useState } from 'react';
+
+import { useUIState, useActions } from 'ai/rsc';
+import { UserMessage } from '../quiz/message';
+
+import { type AI } from '@/app/action';
+import { ChatScrollAnchor } from '@/lib/hooks/chat-scroll-anchor';
+import { Button } from '../ui/button';
+import { QuizStart } from '../quiz/quiz-start';
+import ChatMessages from './ChatMessages';
+import { useChat } from 'ai/react'
 
 export default function Chat(){
+    // const [messages, setMessages] = useUIState<typeof AI>();
+    const { submitUserMessage } = useActions<typeof AI>();
+    const [inputValue, setInputValue] = useState('');
+    const inputRef = useRef<HTMLInputElement>(null);
 
+    const { messages, input, handleInputChange, handleSubmit } = useChat();
+
+    // const onSubmit = async (e: any) => {
+    //     e.preventDefault();
+
+    //     // blur foucs on mobile
+    //     if (window.innerWidth < 600){
+    //         e.target['message']?.blur();
+    //     }
+
+    //     // const value = inputValue.trim();
+    //     // setInputValue('');
+    //     if (!inputValue) return;
+
+    //     console.log(inputValue)
+
+    //     setMessages((currentMessages: any) => [
+    //         ...currentMessages,
+    //         {
+    //             id: Date.now(),
+    //             display: <UserMessage>{inputValue}</UserMessage>
+    //         }
+    //     ]);
+
+    //     try {
+    //         const responseMessage = await submitUserMessage(inputValue);
+    //         setMessages((currentMessages: any) => [
+    //             ...currentMessages,
+    //             responseMessage
+    //         ])
+
+    //         setInputValue('')
+    //     } catch (error) {  
+    //         // throw toast in future
+    //         console.error(error);
+    //     }
+    // }
+
+    
     return(
         <>
-            <div className="w-full h-4/5 box-border bg-inherit flex flex-col justify-between p-2 mx-auto">
-                {/* <div className="flex items-start justify-center ">
-                    <ChatStartup />
-                </div> */}
-                <div className="">
-                    <ChatInput />
+            <div className='pb-[200px] pt-4 md:pt-10 '>
+                {messages.length ? (
+                    <ChatMessages messages={messages}/>
+                ): (
+                    <QuizStart />
+                )}
+                <ChatScrollAnchor trackVisibility={true} />
+            </div>
+            <div className='fixed bottom-10 inset-x-0 px-5 '>
+                <div className='mx-auto mt-10 bg-inherit w-full'>
+                    <form
+                        onSubmit={handleSubmit}
+                        className='w-full flex items-center justify-center text-black'
+                    >
+                       <input 
+                            ref={inputRef}
+                            name='message'
+                            type="text"
+                            value={input}
+                            onChange={handleInputChange}
+                            placeholder='Send a message...'
+                            className='flex w-full md:w-3/5 rounded-full px-5 py-3 items-center justify-center shadow-xl border bg-[#f5f5f5] border-opacity-10 border-black focus:border-black/50 focus:outline-none'
+                       />
+                    </form>
                 </div>
             </div>
         </>
