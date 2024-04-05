@@ -32,7 +32,9 @@
     "remark-math": "^6.0.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "bcrypt": "^5.1.1",
+    "express": "^4.19.2"
   },
   "devDependencies": {
     "@types/node": "^20",

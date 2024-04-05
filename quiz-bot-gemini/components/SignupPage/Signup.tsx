@@ -8,13 +8,32 @@ export default function Signup() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Perform signup logic here (backend integration).
-        console.log('Email:', email);
-        console.log('Password:', password);
-        console.log('Confirm Password:', confirmPassword);
-    };
+    
+        const response = await fetch('http://localhost:3001/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password,
+                confirmPassword: confirmPassword,
+            }),
+        });
+    
+        const data = await response.json();
+    
+        if (response.status === 201) {
+            // Handle successful signup
+            console.log('Success:', data);
+            // Optionally redirect user or clear form
+        } else {
+            // Handle errors or validation issues
+            console.log('Error:', data.message);
+        }
+    };    
 
     return (
         <>  
