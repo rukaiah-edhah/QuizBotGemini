@@ -19,7 +19,7 @@ export const navItems = [
     },
     {
         name: 'Login',
-        path: '/signup'
+        path: '/login'
     },
 ]
 
