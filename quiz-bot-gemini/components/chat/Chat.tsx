@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { ChatScrollAnchor } from '@/lib/hooks/chat-scroll-anchor';
 import { Button } from '../ui/button';
-import { QuizStart } from '../quiz/quiz-start';
+import { QuizStart } from './quiz-start';
 import ChatMessages from './ChatMessages';
 import { useChat } from 'ai/react'
 
@@ -39,7 +39,7 @@ export default function Chat(){
                             value={input}
                             onChange={handleInputChange}
                             placeholder='Send a message...'
-                            className='flex w-full md:w-3/5 rounded-full px-5 py-3 items-center justify-center shadow-xl border bg-[#f5f5f5] border-opacity-10 border-black focus:border-black/50 focus:outline-none'
+                            className='flex w-full lg:w-3/5 rounded-full px-5 py-3 items-center justify-center shadow-xl border bg-[#f5f5f5] border-opacity-10 border-black focus:border-black/50 focus:outline-none'
                        />
                     </form>
                 </div>

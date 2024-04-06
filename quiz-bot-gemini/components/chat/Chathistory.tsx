@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/sheet"
 import { Button } from "../ui/button";
 import { IoMdMenu} from "react-icons/io";
-import ChatHistorySheet from "../Chatpage/chat-history-sheet";
+import ChatHistorySheet from "../chat/chat-history-sheet";
 
 
 const list_items = [

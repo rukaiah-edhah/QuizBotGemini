@@ -1,9 +1,9 @@
 'use client';
 
 import { FaUser } from "react-icons/fa";
-import ChatAiImage from "../Chatpage/chat-ai-image";
+import ChatAiImage from "./chat-ai-image";
 import { cn } from '@/lib/utils';
-import { MemoizedReact } from "../Chatpage/markdown";
+import { MemoizedReact } from "./markdown";
 
 export function UserMessage({ children }: {children: React.ReactNode}){
     return(
