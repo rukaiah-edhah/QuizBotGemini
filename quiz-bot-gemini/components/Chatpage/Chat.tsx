@@ -2,10 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import { useUIState, useActions } from 'ai/rsc';
-import { UserMessage } from '../quiz/message';
 
-import { type AI } from '@/app/action';
 import { ChatScrollAnchor } from '@/lib/hooks/chat-scroll-anchor';
 import { Button } from '../ui/button';
 import { QuizStart } from '../quiz/quiz-start';
@@ -13,48 +10,10 @@ import ChatMessages from './ChatMessages';
 import { useChat } from 'ai/react'
 
 export default function Chat(){
-    // const [messages, setMessages] = useUIState<typeof AI>();
-    const { submitUserMessage } = useActions<typeof AI>();
-    const [inputValue, setInputValue] = useState('');
+    
     const inputRef = useRef<HTMLInputElement>(null);
 
     const { messages, input, handleInputChange, handleSubmit } = useChat();
-
-    // const onSubmit = async (e: any) => {
-    //     e.preventDefault();
-
-    //     // blur foucs on mobile
-    //     if (window.innerWidth < 600){
-    //         e.target['message']?.blur();
-    //     }
-
-    //     // const value = inputValue.trim();
-    //     // setInputValue('');
-    //     if (!inputValue) return;
-
-    //     console.log(inputValue)
-
-    //     setMessages((currentMessages: any) => [
-    //         ...currentMessages,
-    //         {
-    //             id: Date.now(),
-    //             display: <UserMessage>{inputValue}</UserMessage>
-    //         }
-    //     ]);
-
-    //     try {
-    //         const responseMessage = await submitUserMessage(inputValue);
-    //         setMessages((currentMessages: any) => [
-    //             ...currentMessages,
-    //             responseMessage
-    //         ])
-
-    //         setInputValue('')
-    //     } catch (error) {  
-    //         // throw toast in future
-    //         console.error(error);
-    //     }
-    // }
 
     
     return(

@@ -1,4 +1,3 @@
-import { AI } from '@/app/action';
 import { Toaster } from '@/components/ui/toaster';
 
 export default function ChatLayout({
@@ -9,11 +8,9 @@ export default function ChatLayout({
     return(
         <>
             <Toaster />
-            <AI>
-                <main>
-                    {children}
-                </main>
-            </AI>
+            <main>
+                {children}
+            </main>
         </>
     )
 }

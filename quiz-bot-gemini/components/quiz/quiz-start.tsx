@@ -6,7 +6,6 @@ import { Switch } from "@/components/ui/switch"
 import { Button } from "@/components/ui/button"
 
 import { useActions, useUIState } from "ai/rsc";
-import { AI } from "@/app/action";
 import { SVGProps, useState } from "react"
 import { UserMessage } from "./message"
 import {
@@ -24,8 +23,8 @@ export function QuizStart({ subjects = "reactjs", numberOfQuestions = 3, questio
     const [question_level, setQuestionLevel] = useState(questionLevel);
     const [question_type, setQuestionType] = useState(questionType);
     const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
-    const [, setMessages] = useUIState<typeof AI>();
-    const { startQuiz } = useActions<typeof AI>();
+    // const [, setMessages] = useUIState<any>();
+    // const { startQuiz } = useActions<any>();
 
     
     return (
@@ -123,30 +122,7 @@ export function QuizStart({ subjects = "reactjs", numberOfQuestions = 3, questio
                         className="bg-violet-200 px-7 py-2 flex items-center justfiy-center text-black hover:text-white transition-all"
                         // disabled={startQuizUI}
                         disabled={true}
-                        onClick={async (e) => {
-                            e.preventDefault();
-
-                            setMessages((currentMessages: any) => [
-                                ...currentMessages,
-                                {
-                                    id: Date.now(),
-                                    display: <UserMessage>
-                                        {`A quiz with ${totalQuestions} questions on the topic of ${subject}. 
-                                        ${showCorrectAnswer
-                                            ? "I want to see the correct answer after each question" : ""
-                                        }`}
-                                    </UserMessage>
-                                }
-                            ]);
-                            
-                            const response = await startQuiz(subject, totalQuestions, showCorrectAnswer);
-
-                            setStartQuizUI(response.startQuizUI);
-                            setMessages((currentMessages: any) => [
-                                ...currentMessages,
-                                response.newMessage,
-                            ]);
-                        }}
+                        type='button'
                     >
                         Start Quiz
                     </Button>
