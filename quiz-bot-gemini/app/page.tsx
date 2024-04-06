@@ -1,9 +1,9 @@
-import Navbar from "@/components/Homepage/Navbar";
-import Hero from "@/components/Homepage/Hero";
-import Features from "@/components/Homepage/Features";
-import Overview from "@/components/Homepage/Overview";
-import Philosophy from "@/components/Homepage/Philosophy";
-import Footer from "@/components/Homepage/Footer";
+import Navbar from "@/components/HomePage/Navbar";
+import Hero from "@/components/HomePage/Hero";
+import Features from "@/components/HomePage/Features";
+import Overview from "@/components/HomePage/Overview";
+import Philosophy from "@/components/HomePage/Philosophy";
+import Footer from "@/components/HomePage/Footer";
 
 export default function Home() {
   return (

@@ -14,10 +14,10 @@ export default function Hero() {
         />
       </div>
       <div className="flex-1 lg:flex lg:flex-col items-center justify-center px-6 py-20 text-center">
-        <h1 className="text-5xl md:text-5xl font-bold mb-4">
+        <h1 className="lg:text-7xl text-5xl font-bold mb-4">
           Ready to Test Your Knowledge?
         </h1>
-        <p className="text-lg md:text-xl mb-6">
+        <p className="text-xl lg:text-2xl mb-6">
           Engage with fun quizzes on your chosen topic.
         </p>
         <Link

@@ -7,7 +7,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
-import { navItems, title, end } from "@/components/Homepage/Navbar";
+import { navItems, title, end } from "@/components/HomePage/Navbar";
 import { IoMdMenu} from "react-icons/io";
 import { PiCirclesThreeFill } from "react-icons/pi";
 import { metamorphouse } from "@/app/layout";

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Metamorphous } from "next/font/google";
+import { Lora, Metamorphous } from "next/font/google";
 import "./globals.css";
 
 
-const inter = Inter({ 
+const inter = Lora({ 
   variable: '--font-inter',
-  subsets: ["latin"] 
+  subsets: ["latin"],
 });
 
 export const metamorphouse = Metamorphous({
