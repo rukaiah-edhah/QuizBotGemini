@@ -5,9 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Switch } from "@/components/ui/switch"
 import { Button } from "@/components/ui/button"
 
-import { useActions, useUIState } from "ai/rsc";
-import { SVGProps, useState } from "react"
-import { UserMessage } from "./message"
+import { useEffect, useRef, useState } from "react"
 import {
     Select,
     SelectContent,
@@ -16,17 +14,34 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
+import { useChat } from "ai/react"
+
+interface QuizPrompt {
+    subjects: string
+    numberOfQuestions: number
+    questionLevel: string
+    questionType: string
+}
+
 export function QuizStart({ subjects = "reactjs", numberOfQuestions = 3, questionLevel = "Beginner", questionType = "Multiple Choice" }: any) {
-    const [startQuizUI, setStartQuizUI] = useState<boolean>(false);
     const [subject, setSubject] = useState(subjects);
     const [totalQuestions, setTotalQuestions] = useState(numberOfQuestions);
     const [question_level, setQuestionLevel] = useState(questionLevel);
     const [question_type, setQuestionType] = useState(questionType);
     const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
-    // const [, setMessages] = useUIState<any>();
-    // const { startQuiz } = useActions<any>();
+    const [initialInput, setInitialInput] = useState("");
 
+    const { messages, handleSubmit } = useChat()
+
+
+    useEffect(() => {
+        if (messages.length === 0){
+            const prompt = `Start a quiz on ${subject} with ${totalQuestions} questions. The questions are ${question_type} and the difficulty is ${question_level}.`;
+            setInitialInput(prompt)
+        }
+    }, [messages.length]);
     
+        
     return (
         <Card
             className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md"
@@ -40,7 +55,9 @@ export function QuizStart({ subjects = "reactjs", numberOfQuestions = 3, questio
                 </CardDescription>
             </CardHeader>
             <CardContent>
-                <form className="space-y-4">
+                <form className="space-y-4"
+                    onSubmit={handleSubmit}
+                >
                     <div className="space-y-1">
                         <Label
                             htmlFor="subject"
@@ -120,9 +137,8 @@ export function QuizStart({ subjects = "reactjs", numberOfQuestions = 3, questio
 
                     <Button
                         className="bg-violet-200 px-7 py-2 flex items-center justfiy-center text-black hover:text-white transition-all"
-                        // disabled={startQuizUI}
-                        disabled={true}
-                        type='button'
+                        type='submit'
+                
                     >
                         Start Quiz
                     </Button>

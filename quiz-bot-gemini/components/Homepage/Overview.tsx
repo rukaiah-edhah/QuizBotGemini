@@ -30,7 +30,7 @@ export default function Overview() {
             loop
             autoPlay
             muted
-            className="max-w-[80vw]"
+            className="max-w-[70vw] xl:max-w-[80vw]"
           />
         </div> 
         <div className="grid mt-10 md:grid-cols-3 gap-4 text-center">

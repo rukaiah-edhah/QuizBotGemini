@@ -18,7 +18,7 @@ export default function Chat(){
     
     return(
         <>
-            <div className='pb-[200px] pt-4 md:pt-10 '>
+            <div className='pb-[200px] pt-4 md:pt-10'>
                 {messages.length ? (
                     <ChatMessages messages={messages}/>
                 ): (

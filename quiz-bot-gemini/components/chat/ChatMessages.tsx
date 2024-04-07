@@ -1,9 +1,8 @@
 'use client';
 
-import { cn } from "@/lib/utils";
-import ChatAiImage from "./chat-ai-image";
-import { FaUser } from "react-icons/fa";
 import { ChatAIMessage } from "./chat-ai-message";
+
+import { UserMessage,  AIMessage  } from "./message";
 
 export default function ChatMessages({ messages }: { messages: any[] }) {
     if (!messages.length){
@@ -11,17 +10,10 @@ export default function ChatMessages({ messages }: { messages: any[] }) {
     }
 
     return(
-        <div className='relative max-w-2xl px-4  mt-10'>
+        <div className=' max-w-2xl px-4  mt-10 flex flex-col gap-2 items-start justify-start'>
            {messages.map((message: any, index: number) => (
-                <div key={index} className="py-2  flex flex-row gap-2 items-start">
-                     <div 
-                        className={cn(
-                            'flex size-8 shrink-0 select-none items-center justify-center rounded-full shadow'
-                        )}
-                    >
-                        {message.role === 'user' ? <FaUser className='w-4 h-4'/> : <ChatAiImage />}
-                    </div>
-                    {message.role === 'user' ? (`${message.content}`) : <ChatAIMessage content={message.content}/>}
+                <div key={index} className="py-2  flex flex-row gap-2 ">
+                    {message.role === 'user' ? (<UserMessage>{message.content}</UserMessage>) : <AIMessage><ChatAIMessage content={message.content} /></AIMessage>}
                 </div>
             ))}
         </div>
