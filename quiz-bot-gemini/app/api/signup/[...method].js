@@ -33,12 +33,36 @@ async function handlePostRequest(req, res) {
     return res.status(201).json({ message: 'User created successfully' });
 }
 
+// Handle login requests
+async function handleLoginRequest(req, res) {
+    const { email, password } = req.body;
+    
+    const user = users[email];
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+        return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    // Upon successful login, return a success message or token as needed
+    return res.status(200).json({ message: 'Login successful' });
+}
+
+
 export default async function handler(req, res) {
     switch (req.method) {
         case 'GET':
             return handleGetRequest(req, res);
         case 'POST':
             return handlePostRequest(req, res);
+        case 'POST':
+            if (req.query.login === 'true'){
+                return handleLoginRequest(req, res);
+            } else {
+                return handlePostRequest(req, res);                
+            }
         default:
             res.setHeader('Allow', ['GET', 'POST']);
             return res.status(405).end(`Method ${req.method} Not Allowed`);

@@ -2,18 +2,30 @@
 import React, { useState } from 'react';
 import Link from "next/link";
 import { Button } from "../ui/button";
+import axios from 'axios'; // Import axios for making HTTP requests
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(''); // State to handle error messages
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Perform login logic here (backend integration).
-        console.log('Email:', email);
-        console.log('Password:', password);
+        try {
+            // Make a POST request to your API endpoint
+            const response = await axios.post('/api/login', { email, password });
+            console.log(response.data); // Process the response as needed
+            // Redirect or update UI upon successful login
+        } catch (error) {
+            if (axios.isAxiosError(error) && error.response) {
+                // Handle response errors (e.g., 401 Unauthorized)
+                setError(error.response.data.message);
+            } else {
+                // Handle other errors (network issues, etc.)
+                setError('An unexpected error occurred');
+            }
+        }
     };
-
     return (
         <>  
             <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center">
