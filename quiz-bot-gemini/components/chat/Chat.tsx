@@ -9,11 +9,13 @@ import { QuizStart } from './quiz-start';
 import ChatMessages from './ChatMessages';
 import { useChat } from 'ai/react'
 
+import EmptyScreen from './empty-screen';
+
 export default function Chat(){
     
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const { messages, input, handleInputChange, handleSubmit } = useChat();
+    const { messages, input, handleInputChange, handleSubmit, append } = useChat();
 
     
     return(
@@ -22,7 +24,7 @@ export default function Chat(){
                 {messages.length ? (
                     <ChatMessages messages={messages}/>
                 ): (
-                    <QuizStart />
+                    <EmptyScreen />
                 )}
                 <ChatScrollAnchor trackVisibility={true} />
             </div>
