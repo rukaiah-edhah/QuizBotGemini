@@ -36,8 +36,8 @@ export default function Overview() {
         <div className="grid mt-10 md:grid-cols-3 gap-4 text-center">
           {sections.map((section, index) => (
             <div key={index}>
-              <h3 className="text-xl font-semibold mb-2">{section.title}</h3>
-              <p>{section.description}</p>
+              <h3 className="text-xl font-semibold mb-2 mt-6 text-center">{section.title}</h3>
+              <p className="mt-2 text-center">{section.description}</p>
             </div>
           ))}
         </div>
