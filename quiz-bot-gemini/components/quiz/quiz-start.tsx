@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Switch } from "@/components/ui/switch"
 import { Button } from "@/components/ui/button"
 
+import { UserMessage } from "../chat/message"
 import { useEffect, useRef, useState } from "react"
 import {
     Select,
@@ -14,9 +15,8 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
-import { useChat } from "ai/react"
-import { start_quiz } from "@/app/action"
-import { useForm } from 'react-hook-form';
+import { useActions, useUIState } from 'ai/rsc'
+import { AI } from '@/lib/chat/actions';
 
 
 interface QuizPrompt {
@@ -27,17 +27,15 @@ interface QuizPrompt {
 }
 
 export function QuizStart({ subjects = "reactjs", numberOfQuestions = 3, questionLevel = "Beginner", questionType = "Multiple Choice" }: any) {
+    const [startQuizUI, setStartQuizUI] = useState<boolean>(false);
+    const [subject, setSubject] = useState(subjects);
+    const [totalQuestions, setTotalQuestions] = useState(numberOfQuestions);
+    const [question_level, setQuestionLevel] = useState(questionLevel);
+    const [question_type, setQuestionType] = useState(questionType);
     const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
-    const [initialInput, setInitialInput] = useState('');
-
-    const { register, setValue} = useForm();
-
-    useEffect(() => {
-        setValue('subject', subjects);
-        setValue('totalQuestions', numberOfQuestions);
-        setValue('question_level', questionLevel);
-        setValue('question_type', questionType);
-    }, [subjects, numberOfQuestions, questionLevel, questionType]);
+    
+    const [, setMessages] = useUIState<typeof AI>();
+    // const { startQuiz } = useActions<typeof AI>()
 
         
     return (
@@ -54,13 +52,6 @@ export function QuizStart({ subjects = "reactjs", numberOfQuestions = 3, questio
             </CardHeader>
             <CardContent>
                 <form className="space-y-4" 
-                // onSubmit={async (e) => {
-                //     e.preventDefault();
-
-                //     const formData = new FormData(e.currentTarget);
-                //     await start_quiz(formData);
-
-                // }}
                 >
                     <div className="space-y-1">
                         <Label
@@ -72,7 +63,8 @@ export function QuizStart({ subjects = "reactjs", numberOfQuestions = 3, questio
                             id="subject"
                             className="w-full border border-violet-200 focus:outline-none focus:border-black/40 p-2 rounded-xl mt-2"
                             placeholder="e.g. React, Python, Calculus I"
-                            {...register("subject", {required: true})}
+                            value={subject}
+                            onChange={(e) => setSubject(e.target.value)}
                         />
                     </div>
                     <div className="space-y-1">
@@ -82,18 +74,20 @@ export function QuizStart({ subjects = "reactjs", numberOfQuestions = 3, questio
                         >Provide the preferred number of questions</Label>
                         <input 
                             type="number"
-                            id="totalQuestions"
+                            id="total-questions"
+                            value={totalQuestions}
+                            onChange={(e) => setTotalQuestions(parseInt(e.target.value, 10))}
                             min={1}
                             max={50}
                             className="w-full border border-violet-200 focus:outline-none focus:border-black/40 p-2 rounded-xl mt-2"
                             placeholder="Enter your desired number"
-                            {...register("totalQuestions", {required: true})}
                         />
                     </div>
                     <div className="space-y-1">
                         <Label htmlFor="question_level" className="text-black">Question Level</Label>
-                        <Select 
-                            {...register("question_level", {required: true})}
+                        <Select
+                            defaultValue={question_level}
+                            onValueChange={(value) => {setQuestionLevel(value)}} 
                         >
                             <SelectTrigger className="w-full bg-white focus:outline-none focus:border-violet-200">
                                 <SelectValue placeholder="Select question level"/>
@@ -110,7 +104,8 @@ export function QuizStart({ subjects = "reactjs", numberOfQuestions = 3, questio
                     <div>
                         <Label htmlFor="question_type" className="text-black">Question Type</Label>
                         <Select 
-                            {...register("question_type", {required: true})}
+                            defaultValue={question_type}
+                            onValueChange={(value) => {setQuestionType(value)}}
                         >
                             <SelectTrigger className="w-full bg-white focus:outline-none focus:border-violet-200">
                                 <SelectValue placeholder="Select question type"/>
@@ -124,7 +119,7 @@ export function QuizStart({ subjects = "reactjs", numberOfQuestions = 3, questio
                             </SelectContent>
                         </Select>
                     </div>
-                    {/* <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-2">
                         <Switch 
                             aria-label="show correct answer"
                             className="rounded-md  focus:outline-none focus:border-violet-200 [data-state=checked]:bg-violet-200"
@@ -133,11 +128,32 @@ export function QuizStart({ subjects = "reactjs", numberOfQuestions = 3, questio
                             id="show-correct-answer"
                         />
                         <Label htmlFor="show-correct-answer" className="text-black">Show Correct Answer</Label>
-                    </div> */}
+                    </div>
 
                     <Button
                         className="bg-violet-200 px-7 py-2 flex items-center justfiy-center text-black hover:text-white transition-all"
-                        type="submit"
+                        disabled={startQuizUI}
+                        // onClick={async (e) => {
+                        //     e.preventDefault();
+
+                        //     setMessages(currentMessages => [
+                        //         ...currentMessages,
+                        //         {
+                        //             id: Date.now(),
+                        //             display: <UserMessage>
+                        //                 {`Start a quiz on ${subject} with ${totalQuestions} questions. The questions are ${question_type} and the difficulty is ${question_level}.`}
+                        //             </UserMessage>,
+                        //         }
+                        //     ])
+
+                        //     const res = await startQuiz(subject, totalQuestions, question_level, question_type, showCorrectAnswer);
+                        //     setStartQuizUI(res.startQuizUI);
+
+                        //     setMessages((currentMessages: any) => [
+                        //         ...currentMessages,
+                        //         res.newMessage,
+                        //     ])
+                        // }}
                     >
                         Start Quiz
                     </Button>

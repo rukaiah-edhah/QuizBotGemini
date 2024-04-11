@@ -6,11 +6,11 @@ export default function ChatLayout({
     children: React.ReactNode;
 }>) {
     return(
-        <>
+        <div suppressHydrationWarning>
             <Toaster />
             <main>
                 {children}
             </main>
-        </>
+        </div>
     )
 }

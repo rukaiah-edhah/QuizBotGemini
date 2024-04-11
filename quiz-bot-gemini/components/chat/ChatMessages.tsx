@@ -1,21 +1,32 @@
-'use client';
+import { UIState } from "@/lib/chat/actions";
+import { FaExclamation } from "react-icons/fa";
+import Link from "next/link";
 
-import { ChatAIMessage } from "./chat-ai-message";
+export interface ChatMessages {
+    messages: UIState
+    session?: any
+    isShared: boolean
+}
 
-import { UserMessage,  AIMessage  } from "./message";
+export function ChatMessages({
+    messages, session, isShared
+}: ChatMessages) {
+    return messages.length ? (
+        <div className="relative mx-auto max-w-3xl grid auto-rows-max gap-8 px-4">
+        {/* user authentication bit here */}
+        {!isShared && !session ? (
+            <>
+            
+            </>
+        ): null}
 
-export default function ChatMessages({ messages }: { messages: any[] }) {
-    if (!messages.length){
-        return null;
-    }
-
-    return(
-        <div className=' max-w-2xl px-4  mt-10 flex flex-col gap-2 items-start justify-start'>
-           {messages.map((message: any, index: number) => (
-                <div key={index} className="py-2  flex flex-row gap-2 ">
-                    {message.role === 'user' ? (<UserMessage>{message.content}</UserMessage>) : <AIMessage><ChatAIMessage content={message.content} /></AIMessage>}
-                </div>
-            ))}
+        {messages.map(message => (
+            <div key={message.id}>
+                {message.spinner}
+                {message.display}
+                {message.attachments}
+            </div>  
+        ))}
         </div>
-    )
+    ): null
 }
