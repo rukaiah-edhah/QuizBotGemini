@@ -1,28 +1,87 @@
-'use client';
+import { useCallback, useEffect, useRef, useState } from 'react'
 
-import * as React from 'react';
-import { useInView } from 'react-intersection-observer';
-import { useAtBottom } from './use-at-bottom';
+export const useScrollAnchor = () => {
+  const messagesRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const visibilityRef = useRef<HTMLDivElement>(null)
 
-interface ChatScrollAnchorProps {
-  trackVisibility?: boolean;
-}
+  const [isAtBottom, setIsAtBottom] = useState(true)
+  const [isVisible, setIsVisible] = useState(false)
 
-export function ChatScrollAnchor({ trackVisibility }: ChatScrollAnchorProps) {
-  const isAtBottom = useAtBottom();
-  const { ref, entry, inView } = useInView({
-    trackVisibility,
-    delay: 100,
-    rootMargin: '0px 0px -50px 0px',
-  });
-
-  React.useEffect(() => {
-    if (isAtBottom && trackVisibility && !inView) {
-      entry?.target.scrollIntoView({
-        block: 'start',
-      });
+  const scrollToBottom = useCallback(() => {
+    if (messagesRef.current) {
+      messagesRef.current.scrollIntoView({
+        block: 'end',
+        behavior: 'smooth'
+      })
     }
-  }, [inView, entry, isAtBottom, trackVisibility]);
+  }, [])
 
-  return <div ref={ref} className="h-px w-full" />;
+  useEffect(() => {
+    if (messagesRef.current) {
+      if (isAtBottom && !isVisible) {
+        messagesRef.current.scrollIntoView({
+          block: 'end',
+          behavior: 'smooth'
+        })
+      }
+    }
+  }, [isAtBottom, isVisible])
+
+  useEffect(() => {
+    const { current } = scrollRef
+
+    if (current) {
+      const handleScroll = (event: Event) => {
+        const target = event.target as HTMLDivElement
+        const offset = 25
+        const isAtBottom =
+          target.scrollTop + target.clientHeight >= target.scrollHeight - offset
+
+        setIsAtBottom(isAtBottom)
+      }
+
+      current.addEventListener('scroll', handleScroll, {
+        passive: true
+      })
+
+      return () => {
+        current.removeEventListener('scroll', handleScroll)
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (visibilityRef.current) {
+      let observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              setIsVisible(true)
+            } else {
+              setIsVisible(false)
+            }
+          })
+        },
+        {
+          rootMargin: '0px 0px -150px 0px'
+        }
+      )
+
+      observer.observe(visibilityRef.current)
+
+      return () => {
+        observer.disconnect()
+      }
+    }
+  })
+
+  return {
+    messagesRef,
+    scrollRef,
+    visibilityRef,
+    scrollToBottom,
+    isAtBottom,
+    isVisible
+  }
 }

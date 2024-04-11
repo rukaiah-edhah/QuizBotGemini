@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react';
 import Link from "next/link";
 import { Button } from "../ui/button"; // Assuming Button is a custom component
@@ -94,11 +95,11 @@ export default function Signup() {
                     </Button>
                 </form>
                 <div className="flex flex-col items-center justify-center mt-4 space-y-2">
-                    <Link href="/login">
-                        <a className="px-5 bg-violet-700 py-2 text-white rounded-md hover:bg-violet-800">Login</a>
+                    <Link href="/login" className="px-5 bg-violet-700 py-2 text-white rounded-md hover:bg-violet-800">
+                        Login
                     </Link>
-                    <Link href="/">
-                        <a className="px-5 bg-gray-700 py-2 text-white rounded-md hover:bg-gray-800">Back</a>
+                    <Link href="/" className="px-5 bg-gray-700 py-2 text-white rounded-md hover:bg-gray-800">
+                        Back
                     </Link>
                 </div>
             </div>

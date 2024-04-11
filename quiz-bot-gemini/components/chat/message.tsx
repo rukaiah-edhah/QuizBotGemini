@@ -4,6 +4,9 @@ import { FaUser } from "react-icons/fa";
 import ChatAiImage from "./chat-ai-image";
 import { cn } from '@/lib/utils';
 import { MemoizedReact } from "./markdown";
+import { StreamableValue } from "ai/rsc";
+import { useStreamableText } from "@/lib/hooks/use-streamable-text";
+import { spinner } from './spinner';
 
 export function UserMessage({ children }: {children: React.ReactNode}){
     return(
@@ -19,12 +22,13 @@ export function UserMessage({ children }: {children: React.ReactNode}){
 }
 
 export function AIMessage({
-    children,
+    content,
     className
 }: {
-    children: React.ReactNode,
+    content: string | StreamableValue<string>,
     className?: string
 }) {
+    const text = useStreamableText(content)
     return(
         <div className={cn(
             'group relative flex items-start md:-ml-12',
@@ -35,11 +39,9 @@ export function AIMessage({
                 <ChatAiImage />
             </div>
             <div className="ml-4 flex-1 space-y-2 overflow-hidden px-1">
-                {typeof children === 'string' ? (
-                    <MemoizedReact>
-                        {children}
-                    </MemoizedReact>
-                ): children}
+                <MemoizedReact>
+                    {text}
+                </MemoizedReact>
             </div>
         </div>
     )
@@ -73,6 +75,19 @@ export function SystemMessage({ children }: {children: React.ReactNode}){
         <div className="mt-2 flex items-center justify-center gap-2 text-xs">
             <div className="max-w-[600px] flex-initial p-2">
                 {children}
+            </div>
+        </div>
+    )
+}
+
+export function SpinnerMessage() {
+    return(
+        <div className="group relative flex items-start md:-ml-12">
+            <div className="flex size-[25px] shrink-0 select-none items-center justify-center rounded-lg border shadow-sm">
+                <ChatAiImage />
+            </div>
+            <div className="ml-4 h-[24px] flex flex-row items-center flex-1 space-y-2 overflow-hidden px-1">
+                {spinner}
             </div>
         </div>
     )

@@ -1,51 +1,74 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react';
+import { ChatMessages } from "./ChatMessages"
+import EmptyScreen from "./empty-screen"
+import { Message } from "@/lib/chat/actions"
+import { useAIState, useUIState } from "ai/rsc"
+import { usePathname, useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+import { useScrollAnchor } from "@/lib/hooks/chat-scroll-anchor"
+import ChatForm from "./ChatForm"
+import { cn } from "@/lib/utils"
+import { useLocalStorage } from "@/lib/hooks/use-local-storage"
+import { toast } from 'sonner'
 
+export interface ChatProps extends React.ComponentProps<'div'> {
+    initialMessages: Message[]
+    id?: string
+    session?: any
+    missingKeys: string[]
+}
 
-import { ChatScrollAnchor } from '@/lib/hooks/chat-scroll-anchor';
-import { Button } from '../ui/button';
-import { QuizStart } from './quiz-start';
-import ChatMessages from './ChatMessages';
-import { useChat } from 'ai/react'
+export function Chat({
+    id,
+    className,
+    session,
+    missingKeys
+}: ChatProps){
+    const router = useRouter()
+    const path = usePathname()
+    const [input, setInput] = useState('')
+    const [messages] = useUIState()
+    const [aiState] = useAIState()
 
-import EmptyScreen from './empty-screen';
+    const [_, setNewChatId] = useLocalStorage('newChatId', id)
 
-export default function Chat(){
-    
-    const inputRef = useRef<HTMLInputElement>(null);
+    useEffect(() => {
+        const messagesLength = aiState.messages?.length
+        if (messagesLength === 2){
+            router.refresh()
+        }
+    }, [aiState.messages, router])
 
-    const { messages, input, handleInputChange, handleSubmit, append } = useChat();
+    useEffect(() => {
+        setNewChatId(id)
+    })
 
-    
+    useEffect(() => {
+        missingKeys.map(key => {
+            toast.error(`Missing ${key} env variable`)
+        })
+    }, [missingKeys])
+
+    const { messagesRef, scrollRef, scrollToBottom, visibilityRef, isAtBottom } = useScrollAnchor()
+
     return(
-        <>
-            <div className='pb-[200px] pt-4 md:pt-10'>
+        <div
+            className="group w-full overflow-auto pl-0 peer-[[data-state=open]]:lg:pl-[250px] peer-[[data-state=open]]:xl:pl-[300px]"
+            ref={scrollRef}
+        >
+            <div className={cn('pb-[200px] pt-4', className)} ref={messagesRef}>
                 {messages.length ? (
-                    <ChatMessages messages={messages}/>
+                    <ChatMessages messages={messages} session={session} isShared={false}/>
                 ): (
                     <EmptyScreen />
                 )}
-                <ChatScrollAnchor trackVisibility={true} />
+                <div className="h-px w-full" ref={visibilityRef}/>
             </div>
-            <div className='fixed bottom-10 inset-x-0 px-5 '>
-                <div className='mx-auto mt-10 bg-inherit w-full'>
-                    <form
-                        onSubmit={handleSubmit}
-                        className='w-full flex items-center justify-center text-black'
-                    >
-                       <input 
-                            ref={inputRef}
-                            name='message'
-                            type="text"
-                            value={input}
-                            onChange={handleInputChange}
-                            placeholder='Send a message...'
-                            className='flex w-full lg:w-3/5 rounded-full px-5 py-3 items-center justify-center shadow-xl border bg-[#f5f5f5] border-opacity-10 border-black focus:border-black/50 focus:outline-none'
-                       />
-                    </form>
-                </div>
-            </div>
-        </>
+            <ChatForm 
+                input={input} 
+                setInput={setInput}
+            />
+        </div>
     )
 }
