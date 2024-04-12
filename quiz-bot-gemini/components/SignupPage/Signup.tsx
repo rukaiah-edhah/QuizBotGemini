@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Link from "next/link";
 import { Button } from "../ui/button"; // Assuming Button is a custom component
+import { FaGoogle } from 'react-icons/fa';
 
 export default function Signup() {
     const [formData, setFormData] = useState({
@@ -45,64 +46,59 @@ export default function Signup() {
     };
 
     return (
-        <>  
-            <div className="container mx-auto px-4">
-                <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center space-y-4">
-                    <h1 className="text-violet-700 text-xl mb-4">Sign Up</h1>
-                    {message && (
-                        <div className={`message ${isSuccess ? 'text-green-600' : 'text-red-600'}`}>
-                            <p>{message}</p>
-                        </div>
-                    )}
-                    <label htmlFor="email" className="block text-gray-700">
-                        Email:
-                        <input 
-                            type="email" 
-                            id="email" 
-                            name="email" 
-                            value={formData.email} 
-                            onChange={handleChange} 
-                            className="border border-gray-300 rounded-md py-2 px-4 text-black focus:outline-none focus:border-blue-500 w-full mt-1"
-                            required 
-                        />
-                    </label>
-                    <label htmlFor="password" className="block text-gray-700">
-                        Password:
-                        <input 
-                            type="password" 
-                            id="password" 
-                            name="password" 
-                            value={formData.password} 
-                            onChange={handleChange} 
-                            className="border border-gray-300 rounded-md py-2 px-4 text-black focus:outline-none focus:border-blue-500 w-full mt-1"
-                            required 
-                        />
-                    </label>
-                    <label htmlFor="confirmPassword" className="block text-gray-700">
-                        Confirm Password:
-                        <input 
-                            type="password" 
-                            id="confirmPassword" 
-                            name="confirmPassword" 
-                            value={formData.confirmPassword} 
-                            onChange={handleChange} 
-                            className="border border-gray-300 rounded-md py-2 px-4 text-black focus:outline-none focus:border-blue-500 w-full mt-1"
-                            required 
-                        />
-                    </label>
-                    <Button type="submit" className="w-full px-5 bg-violet-700 py-2 text-white rounded-md hover:bg-violet-800">
-                        Sign Up
-                    </Button>
-                </form>
-                <div className="flex flex-col items-center justify-center mt-4 space-y-2">
-                    <Link href="/login" className="px-5 bg-violet-700 py-2 text-white rounded-md hover:bg-violet-800">
-                        Login
-                    </Link>
-                    <Link href="/" className="px-5 bg-gray-700 py-2 text-white rounded-md hover:bg-gray-800">
-                        Back
-                    </Link>
+        <div className="md:max-w-2xl max-w-md p-20 border rounded-md bg-white shadow-lg">
+            <form onSubmit={handleSubmit} className="space-y-6">
+                <h1 className="text-5xl font-bold text-center mb-7 text-purple-500">Create Your Account</h1>
+                <p className="text-md md:text-lg text-center mb-8 text-black">Sign up to start the adventure</p>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email"
+                    placeholder="Enter your email address"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full border-2 border-purple-300 rounded-md py-3 px-7 text-black focus:outline-none focus:border-purple-500"
+                    required 
+                />
+                <input 
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className="w-full border-2 border-purple-300 rounded-md py-3 px-7 text-black focus:outline-none focus:border-purple-500"
+                    required 
+                />
+                <input 
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    placeholder="Confirm your password"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    className="w-full border-2 border-purple-300 rounded-md py-3 px-7 text-black focus:outline-none focus:border-purple-500"
+                    required 
+                />
+                {message && (
+                    <div className={`text-center mt-2 text-${isSuccess ? 'green-600' : 'red-600'}`}>
+                        <p>{message}</p>
+                    </div>
+                )}
+                <Button type="submit" className="w-full bg-purple-500 py-6 text-white rounded-md hover:bg-purple-600">
+                    Sign Up
+                </Button>
+                <div className="w-full flex items-center justify-center relative py-2">
+                    <div className="w-full h-[1px] bg-black"></div>
+                    <p className="absolute text-black/80 bg-[white] p-4">or</p>
                 </div>
+                <Link href="" className="flex items-center justify-center bg-purple-500 hover:bg-purple-600 py-4 rounded-md">
+                    <FaGoogle className="mr-2"/><span>Sign up with Google</span>
+                </Link>
+            </form>
+            <div className="text-center mt-4 text-black">
+                <p>Already have an account? <Link href="/login" className="text-purple-500 hover:text-purple-600">Log in</Link></p>
             </div>
-        </>
+        </div>
     );
 }

@@ -28,10 +28,10 @@ export default function Login() {
         }
     };
     return (
-            <div className="p-20 border rounded-md bg-white shadow-lg"> {/* if we want a darker color then we should use bg-gray-900 */}
+            <div className="md:max-w-2xl max-w-md p-20 border rounded-md bg-white shadow-lg"> {/* if we want a darker color then we should use bg-gray-900 */}
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <h1 className="text-5xl font-bold text-center mb-7 text-purple-500">Welcome Back!</h1>
-                    <p className="text-lg text-center mb-8 text-black">Provide your credentials to kickstart the quiz</p>
+                    <p className="text-md md:text-lg text-center mb-8 text-black">Provide your credentials to kickstart the quiz</p>
                     <input 
                         type="email" 
                         id="email" 
@@ -39,7 +39,7 @@ export default function Login() {
                         placeholder="Enter your email address"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full border-2 border-purple-300 rounded-md py-3 px-7 text-black focus:outline-none focus:border-purple-500"
+                        className="w-full border-2 border-purple-300 rounded-md py-3 px-9 text-black focus:outline-none focus:border-purple-500"
                         required 
                     />
                     <input 
@@ -63,7 +63,7 @@ export default function Login() {
                         <p className="absolute text-black/80 bg-[white] p-4">or</p>
                     </div>
                     <Link href="" className="flex items-center justify-center bg-purple-500 hover:bg-purple-600 py-4 rounded-md ">
-                        <FaGoogle className="bg-balck"/>
+                        <FaGoogle className="mr-2"/><span>Log in with Google</span>
                     </Link>
                 </form>
                 <div className="text-center mt-4 text-black">
