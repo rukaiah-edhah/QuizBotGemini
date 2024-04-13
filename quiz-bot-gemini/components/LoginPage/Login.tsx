@@ -39,7 +39,7 @@ export default function Login() {
                         placeholder="Enter your email address"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full border-2 border-purple-300 rounded-md py-3 px-9 text-black focus:outline-none focus:border-purple-500"
+                        className="w-full border-2 border-purple-300 rounded-md py-3 px-7 text-black focus:outline-none focus:border-purple-500"
                         required 
                     />
                     <input 

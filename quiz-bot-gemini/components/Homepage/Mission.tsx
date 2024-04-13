@@ -4,8 +4,8 @@ export default function Mission() {
     return (
       <section className="bg-violet-300 text-gray-900 py-40 w-full">
       <div className="text-center">
-      <h2 className="text-4xl font-semibold mb-4 text-white">Our Mission</h2>
-      <p className="text-2xl lg:text-3xl">Foster ongoing learning through interactive approaches.</p>
+      <h2 className="text-3xl lg:text-4xl font-semibold mb-4 text-white">Our Mission</h2>
+      <p className="text-xl lg:text-3xl">Foster ongoing learning through interactive approaches.</p>
       </div>
       <div className="flex justify-center mt-10">
       <Link
