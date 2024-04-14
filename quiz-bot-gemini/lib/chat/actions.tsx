@@ -2,10 +2,10 @@ import 'server-only'
 
 import { UserMessage, AIMessage, AICard, SpinnerMessage } from '@/components/chat/message';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { google } from 'ai/google'
+import { google } from 'ai/google';
 import { createAI, getMutableAIState, createStreamableValue, createStreamableUI } from 'ai/rsc';
 
-import { number, z } from 'zod';
+import { z } from 'zod';
 import { Chat }from '@/lib/types'
 
 import { QuizStart } from '@/components/quiz/quiz-start';
@@ -20,12 +20,13 @@ import { rateLimit } from '@/lib/chat/rate-limit';
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENERATIVE_AI_API_KEY || '');
 
+
 async function submitUserMessage(content: string){
     'use server'
 
-    await rateLimit()
+    // await rateLimit()
 
-    const aiState: any = getMutableAIState()
+    const aiState = getMutableAIState()
     
     aiState.update({
         ...aiState.get(),

@@ -9,8 +9,9 @@ import { useEffect, useState } from "react"
 import { useScrollAnchor } from "@/lib/hooks/chat-scroll-anchor"
 import ChatForm from "./ChatForm"
 import { cn } from "@/lib/utils"
-import { useLocalStorage } from "@/lib/hooks/use-local-storage"
 import { toast } from 'sonner'
+
+import { useChat } from 'ai/react'
 
 export interface ChatProps extends React.ComponentProps<'div'> {
     initialMessages: Message[]
@@ -26,12 +27,9 @@ export function Chat({
     missingKeys
 }: ChatProps){
     const router = useRouter()
-    const path = usePathname()
-    const [input, setInput] = useState('')
-    const [messages] = useUIState()
+    // const [input, setInput] = useState('')
     const [aiState] = useAIState()
 
-    const [_, setNewChatId] = useLocalStorage('newChatId', id)
 
     useEffect(() => {
         const messagesLength = aiState.messages?.length
@@ -41,16 +39,13 @@ export function Chat({
     }, [aiState.messages, router])
 
     useEffect(() => {
-        setNewChatId(id)
-    })
-
-    useEffect(() => {
         missingKeys.map(key => {
             toast.error(`Missing ${key} env variable`)
         })
     }, [missingKeys])
 
     const { messagesRef, scrollRef, scrollToBottom, visibilityRef, isAtBottom } = useScrollAnchor()
+    const { messages, input, handleInputChange, handleSubmit } = useChat()
 
     return(
         <div
@@ -59,7 +54,7 @@ export function Chat({
         >
             <div className={cn('pb-[200px] pt-4', className)} ref={messagesRef}>
                 {messages.length ? (
-                    <ChatMessages messages={messages} session={session} isShared={false}/>
+                    <ChatMessages messages={messages}/>
                 ): (
                     <EmptyScreen />
                 )}
@@ -67,7 +62,8 @@ export function Chat({
             </div>
             <ChatForm 
                 input={input} 
-                setInput={setInput}
+                onChange={handleInputChange} 
+                onSubmit={handleSubmit}
             />
         </div>
     )
