@@ -35,7 +35,7 @@ export default function ResNavbar(){
                     </SheetHeader>
                     <div className="flex flex-col items-center justify-center p-10 gap-2">
                         <ul className="flex flex-col gap-2 text-center w-full">
-                            {navItems.slice(0, -4).map((items: any) => (
+                            {navItems.slice(0, -5).map((items: any) => (
                                 <div key={items.name}>
                                         <li className="w-full border border-white border-opacity-10 p-2 rounded-xl">
                                             <SheetClose asChild>

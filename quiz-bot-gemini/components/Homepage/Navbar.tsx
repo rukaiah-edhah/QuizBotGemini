@@ -10,12 +10,16 @@ export const navItems = [
         path: '#'
     },
     {
-        name: 'Quizzara',
-        path: '/chat'
+        name: 'Home',
+        path: '/'
     },
     {
-        name: 'Contact Us',
-        path: 'https://sites.google.com/view/teamgoalgetters/home'
+        name: 'About',
+        path: '/about'
+    },
+    {
+        name: 'Quizzara',
+        path: '/chat'
     },
     {
         name: 'Login',
@@ -24,7 +28,7 @@ export const navItems = [
 ]
 
 export const title = [...navItems.filter(items => items.name === 'QuizBot Gemini')]
-export const end = [...navItems.slice(-3)] 
+export const end = [...navItems.slice(-4)] 
 
 export default function Navbar(){
     return(
