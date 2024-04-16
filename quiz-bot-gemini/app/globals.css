@@ -80,3 +80,9 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  ::placeholder {
+    @apply text-base; 
+  }
+}
