@@ -2,38 +2,19 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import axios from "axios"; // Import axios for making HTTP requests
-import { FaGoogle } from "react-icons/fa";
+import { FaExclamation, FaGoogle } from "react-icons/fa";
 import { FaApple } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+import { useFormState, useFormStatus } from "react-dom";
+
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); // State to handle error messages
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      // Make a POST request to your API endpoint
-      const response = await axios.post("/api/login", { email, password });
-      console.log(response.data); // Process the response as needed
-      // Redirect or update UI upon successful login
-    } catch (error) {
-      if (axios.isAxiosError(error) && error.response) {
-        // Handle response errors (e.g., 401 Unauthorized)
-        setError(error.response.data.message);
-      } else {
-        // Handle other errors (network issues, etc.)
-        setError("An unexpected error occurred");
-      }
-    }
-  };
   return (
     <div className="md:max-w-2xl max-w-md p-20 border rounded-md bg-white shadow-lg">
       {" "}
       {/* if we want a darker color then we should use bg-gray-900 */}
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form action={''} className="space-y-6">
         <h1 className="text-5xl font-bold text-center mb-7 text-purple-500">
           Welcome Back!
         </h1>
@@ -45,8 +26,6 @@ export default function Login() {
           id="email"
           name="email"
           placeholder="Enter your email address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
           className="w-full border-2 border-purple-300 rounded-md py-3 px-7 text-black focus:outline-none focus:border-purple-500"
           required
         />
@@ -55,8 +34,6 @@ export default function Login() {
           id="password"
           name="password"
           placeholder="Enter your password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
           className="w-full border-2 border-purple-300 rounded-md py-3 px-7 text-black focus:outline-none focus:border-purple-500"
           required
         />

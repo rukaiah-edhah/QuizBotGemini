@@ -20,7 +20,7 @@ export const sendEmail = async(formData: FormData) => {
     try {
         await resend.emails.send({
             from: 'Quizzara Website <onboarding@resend.dev>',
-            to: ["rashaadleehue1@gmail.com"], // we'll store our emails in .env.local
+            to: [process.env.EMAIL as string, ], // we'll store our emails in .env.local
             subject: "New Message",
             reply_to: sender as string,
             react: React.createElement(QuizzaraEmail, {

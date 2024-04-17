@@ -1,8 +1,12 @@
+"use client"
 import Link from "next/link"
-//import { MdQuiz } from "react-icons/md";
 import { PiCirclesThreeFill } from "react-icons/pi";
 import ResNavbar from "./ResNavbar";
 import { metamorphouse } from "@/app/layout";
+import {LoginLink, LogoutLink} from '@kinde-oss/kinde-auth-nextjs/components'
+import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs';
+
 
 export const navItems = [
     {
@@ -21,14 +25,10 @@ export const navItems = [
         name: 'Quizzara',
         path: '/chat'
     },
-    {
-        name: 'Login',
-        path: '/login'
-    },
 ]
 
 export const title = [...navItems.filter(items => items.name === 'QuizBot Gemini')]
-export const end = [...navItems.slice(-4)] 
+export const end = [...navItems.slice(-3)] 
 
 export default function Navbar(){
     return(
@@ -76,10 +76,32 @@ export default function Navbar(){
                             </li>
                         </div>
                     ))}
+                    <li>
+                        <AuthButton />
+                    </li>
                 </ul>
-                
                 <ResNavbar />
             </div>
         </nav>
+    )
+}
+
+export function AuthButton(){
+    const { isAuthenticated } = useKindeBrowserClient();
+
+    return isAuthenticated ? (
+        <>
+            <LogoutLink className="p-0 hover:opacity-70 transition-all">
+                Logout
+            </LogoutLink>
+        </>
+    ) : (
+        <>
+            <LoginLink 
+                className="p-0 hover:opacity-70 transition-all"
+            >
+                Login
+            </LoginLink>
+        </>
     )
 }

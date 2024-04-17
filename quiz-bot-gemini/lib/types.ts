@@ -8,3 +8,17 @@ export interface Chat extends Record<string, any> {
     path: string
     messages: Message[]
 }
+
+export interface User extends Record<string, any> {
+    id: string
+    email: string
+    password: string
+    salt: string
+}
+
+export interface Session {
+    user: {
+      id: string
+      email: string
+    }
+}
