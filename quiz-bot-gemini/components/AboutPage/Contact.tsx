@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useToast } from '../ui/use-toast';
+import { sendEmail } from '@/actions/sendEmail';
 
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -26,8 +28,13 @@ export default function Contact() {
     resolver: zodResolver(contactSchema)
   });
 
-  const onSubmit = (data: ContactFormData) => { 
-    console.log("Form submitted", data);
+  const { toast } = useToast();
+
+  const onSubmit = () => { 
+    toast({
+      title: 'Message sent successfully',
+      description: 'Thank you!',
+    });
   };
 
   return (
@@ -36,7 +43,7 @@ export default function Contact() {
         <section className="max-w-2xl mx-auto">
           <h1 className="text-4xl font-bold text-center mb-8">Contact Us</h1>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <form action={async (formData) => { await sendEmail(formData) }} className="space-y-6">
               <FormField name="name" control={form.control} render={({ field }) => (
                 <FormItem>
                   <FormLabel>Name</FormLabel>
@@ -64,7 +71,7 @@ export default function Contact() {
                   <FormMessage />
                 </FormItem>
               )} />
-              <Button type="submit" className="px-6 py-3 bg-purple-500 rounded-md text-lg font-medium hover:bg-purple-600 transition-colors">
+              <Button type="submit" onClick={onSubmit} className="px-6 py-3 bg-purple-500 rounded-md text-lg font-medium hover:bg-purple-600 transition-colors">
                 Send Message
               </Button>
             </form>

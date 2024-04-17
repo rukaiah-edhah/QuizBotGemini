@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Lora, Metamorphous } from "next/font/google";
 import "./globals.css";
-
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Lora({ 
   variable: '--font-inter',
@@ -30,6 +30,7 @@ export default function RootLayout({
         <main>
           {children}
         </main>
+        <Toaster />
       </body>
     </html>
   );
