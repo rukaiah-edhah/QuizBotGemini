@@ -1,10 +1,17 @@
 import { sql } from 'drizzle-orm'
 import { pgTable, timestamp, text, integer, index } from 'drizzle-orm/pg-core';
 
-export const user = pgTable('user_table', {
+export const messages = pgTable('messages_table', {
     id: integer('id').primaryKey().notNull(),
-    kindeAuthId: text('kinde_auth_id'),
-    kindeAuthName: text('kinde_auth_name'),
+    chatId: text('chat_id'),
+    role: text('role', { enum: ["user", "assistant"]}).notNull(),
+    content: text('content').notNull(),
     // feel free to add what ever else is necessary
     createdAt: timestamp('created_at').defaultNow().notNull(),
 })
+
+// id
+// chatId
+// role 'user' | 'assistant' | 'system'
+// content
+// createdAt
