@@ -14,7 +14,11 @@ export function ChatMessages({
                 {/* <SpinnerMessage /> */}
                 {message.role === 'user' ? 
                 (<UserMessage>{message.content}</UserMessage>) :
-                (<AICard><AIMessage content={message.content} /></AICard>)}
+                (<AICard>
+                    <AIMessage>
+                        {message.content}
+                    </AIMessage>
+                </AICard>)}
             </div>  
         ))}
         </div>

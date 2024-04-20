@@ -22,13 +22,12 @@ export function UserMessage({ children }: {children: React.ReactNode}){
 }
 
 export function AIMessage({
-    content,
+    children,
     className
 }: {
-    content: string | StreamableValue<string>,
+    children: React.ReactNode,
     className?: string
 }) {
-    const text = useStreamableText(content)
     return(
         <div className={cn(
             'group relative flex items-start md:-ml-12',
@@ -39,9 +38,7 @@ export function AIMessage({
                 <ChatAiImage />
             </div>
             <div className="ml-4 flex-1 space-y-2 overflow-hidden px-1">
-                <MemoizedReact>
-                    {text}
-                </MemoizedReact>
+                {children}
             </div>
         </div>
     )
