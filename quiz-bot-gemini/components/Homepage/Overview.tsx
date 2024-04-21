@@ -4,8 +4,8 @@ import NextVideo from "next-video";
 export default function Overview() {
   const sections = [
     {
-      title: "Educational Fun",
-      description: "Combine learning with entertaining quizzes.",
+      title: "Interactive Learning",
+      description: "Combine learning with interactive quizzes to make education fun.",
     },
     {
       title: "Real-Time Feedback",
@@ -13,8 +13,8 @@ export default function Overview() {
         "Receive immediate feedback on answers to enhance your understanding of concepts.",
     },
     {
-      title: "Various Subjects",
-      description: "Stay engaged with new quizzes on various subjects.",
+      title: "Diverse Topics",
+      description: "Explore and stay engaged with new quizzes on various subjects.",
     },
   ];
 

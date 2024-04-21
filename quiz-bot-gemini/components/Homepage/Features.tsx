@@ -4,7 +4,7 @@ import { AiFillThunderbolt } from "react-icons/ai";
 
 export default function Features() {
   return (
-    <div id="features" className="bg-violet-300 py-40 w-full">
+    <div id="features" className="bg-violet-300 py-28 w-full">
       <h2 className="text-center text-5xl font-bold text-gray-900 mb-20">
         How it Works
       </h2>
