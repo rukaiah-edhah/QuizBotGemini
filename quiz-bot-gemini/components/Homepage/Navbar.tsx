@@ -3,10 +3,6 @@ import Link from "next/link"
 import { PiCirclesThreeFill } from "react-icons/pi";
 import ResNavbar from "./ResNavbar";
 import { metamorphouse } from "@/app/layout";
-import {LoginLink, LogoutLink} from '@kinde-oss/kinde-auth-nextjs/components'
-import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
-import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs';
-
 
 export const navItems = [
     {
@@ -76,9 +72,6 @@ export default function Navbar(){
                             </li>
                         </div>
                     ))}
-                    <li>
-                        <AuthButton />
-                    </li>
                 </ul>
                 <ResNavbar />
             </div>
@@ -86,22 +79,3 @@ export default function Navbar(){
     )
 }
 
-export function AuthButton(){
-    const { isAuthenticated } = useKindeBrowserClient();
-
-    return isAuthenticated ? (
-        <>
-            <LogoutLink className="p-0 hover:opacity-70 transition-all">
-                Logout
-            </LogoutLink>
-        </>
-    ) : (
-        <>
-            <LoginLink 
-                className="p-0 hover:opacity-70 transition-all"
-            >
-                Login
-            </LoginLink>
-        </>
-    )
-}

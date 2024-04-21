@@ -1,5 +1,4 @@
 import { Toaster } from '@/components/ui/toaster';
-import { AI } from '@/lib/chat/actions';
 import { nanoid } from 'nanoid'
 
 export default function ChatLayout({
@@ -12,11 +11,9 @@ export default function ChatLayout({
     return(
         <div suppressHydrationWarning>
             <Toaster />
-            <AI initialAIState={{ chatId: id, interactions: [], messages: []}}>
-                <main>
-                    {children}
-                </main>
-            </AI>
+            <main>
+                {children}
+            </main>
         </div>
     )
 }

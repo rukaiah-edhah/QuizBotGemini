@@ -4,10 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import { UserMessage } from './message';
 
 import { Button } from '../ui/button';
-
-import { type AI } from '@/lib/chat/actions';
-import { nanoid } from 'nanoid';
-import { useActions, useUIState } from 'ai/rsc';
 import { toast } from 'sonner';
 
 export default function ChatForm({
@@ -15,9 +11,7 @@ export default function ChatForm({
     onChange,
     onSubmit
 }: any){
-    const { submitUserMessage } = useActions()
     const inputRef = useRef<HTMLInputElement>(null);
-    const [_, setMessages] = useUIState<typeof AI>()
 
     useEffect(() => {
         if (inputRef.current) {

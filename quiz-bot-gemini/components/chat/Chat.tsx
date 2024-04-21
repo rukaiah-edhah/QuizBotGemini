@@ -2,8 +2,6 @@
 
 import { ChatMessages } from "./ChatMessages"
 import EmptyScreen from "./empty-screen"
-import { Message } from "@/lib/chat/actions"
-import { useAIState, useUIState } from "ai/rsc"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { useScrollAnchor } from "@/lib/hooks/chat-scroll-anchor"
@@ -13,36 +11,8 @@ import { toast } from 'sonner'
 
 import { useChat } from 'ai/react'
 
-export interface ChatProps extends React.ComponentProps<'div'> {
-    initialMessages: Message[]
-    id?: string
-    session?: any
-    missingKeys: string[]
-}
 
-export function Chat({
-    id,
-    className,
-    session,
-    missingKeys
-}: ChatProps){
-    const router = useRouter()
-    // const [input, setInput] = useState('')
-    const [aiState] = useAIState()
-
-
-    useEffect(() => {
-        const messagesLength = aiState.messages?.length
-        if (messagesLength === 2){
-            router.refresh()
-        }
-    }, [aiState.messages, router])
-
-    useEffect(() => {
-        missingKeys.map(key => {
-            toast.error(`Missing ${key} env variable`)
-        })
-    }, [missingKeys])
+export function Chat({ className }: {className?: string}) {
 
     const { messagesRef, scrollRef, scrollToBottom, visibilityRef, isAtBottom } = useScrollAnchor()
     const { messages, input, handleInputChange, handleSubmit } = useChat()

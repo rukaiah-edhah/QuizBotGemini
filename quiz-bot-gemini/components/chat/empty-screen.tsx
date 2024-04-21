@@ -15,17 +15,9 @@ export default function EmptyScreen(){
                 </CardDescription>
             </CardHeader>
             <CardContent className='flex flex-col items-start space-x-4 p-4'>
-                <div>
-                    <p>
-                        The way this quiz works is as follows:
-                        <ul>
-                            <li>1. Select a topic</li>
-                            <li>2. Select difficulty</li>
-                            <li>3. Answer questions</li>
-                            <li>4. Get instant feedback</li>
-                        </ul>
-
-                        <p className='text-violet-500'>Note: You can change your preferences at any time.</p>
+                <div className='flex flex-col items-center justify-center'>
+                    <p className='text-violet-500'>
+                        Enter your preferences and start your personalized quiz!
                     </p>
                 </div>
 

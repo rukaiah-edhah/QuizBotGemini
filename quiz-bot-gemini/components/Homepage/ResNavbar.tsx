@@ -12,7 +12,6 @@ import { navItems, title, end } from "@/components/HomePage/Navbar";
 import { IoMdMenu} from "react-icons/io";
 import { PiCirclesThreeFill } from "react-icons/pi";
 import { metamorphouse } from "@/app/layout";
-import { AuthButton } from "@/components/HomePage/Navbar";
 
 
 export default function ResNavbar(){
@@ -63,9 +62,6 @@ export default function ResNavbar(){
                                         </li>
                                 </div>
                             ))}
-                            <li className="w-full border border-white/10 p-2 rounded-xl">
-                                <AuthButton />
-                            </li>
                         </ul>
                     </div>
                 </SheetContent>
