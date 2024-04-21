@@ -4,7 +4,7 @@ import { QuizAIMessage } from "../quiz/quiz-ai-message";
 export function ChatMessages({
     messages
 }: any) {
-    const question = true; // only here to test out conditional rendering -> once we have quiz questions Card, we'll update
+    const question = false; // only here to test out conditional rendering -> once we have quiz questions Card, we'll update
 
     return messages.length ? (
         <div className="relative mx-auto max-w-3xl grid auto-rows-max gap-8 px-4 mt-16">
