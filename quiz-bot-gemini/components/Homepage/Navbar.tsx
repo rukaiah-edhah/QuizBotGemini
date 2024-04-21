@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { PiCirclesThreeFill } from "react-icons/pi";
 import ResNavbar from "./ResNavbar";
-import { metamorphouse } from "@/app/layout";
+import { inika } from "@/app/layout";
 
 export const navItems = [
     {
@@ -52,7 +52,7 @@ export default function Navbar(){
                                 <PiCirclesThreeFill className="w-5 h-5 inline mx-auto" />
                                 <p
                                     className={`inline align-middle
-                                        ${metamorphouse.className}
+                                        ${inika.className}
                                     `}
                                 >
                                     {t.name}

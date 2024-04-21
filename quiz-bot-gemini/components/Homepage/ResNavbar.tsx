@@ -11,7 +11,7 @@ import {
 import { navItems, title, end } from "@/components/HomePage/Navbar";
 import { IoMdMenu} from "react-icons/io";
 import { PiCirclesThreeFill } from "react-icons/pi";
-import { metamorphouse } from "@/app/layout";
+import { inika } from "@/app/layout";
 
 
 export default function ResNavbar(){
@@ -26,7 +26,7 @@ export default function ResNavbar(){
                                 <PiCirclesThreeFill className="w-5 h-5 inline mx-auto mr-2" />
                                 <p
                                     className={`inline align-middle --font-metamorphous
-                                        ${metamorphouse.className}
+                                        ${inika.className}
                                     `}
                                 >
                                     {t.name}

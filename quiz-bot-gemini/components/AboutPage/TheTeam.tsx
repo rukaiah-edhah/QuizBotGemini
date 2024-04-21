@@ -50,7 +50,7 @@ export default function Team() {
                       width={200}
                       height={200}
                       className="rounded-full mb-4 object-cover"
-                      priority
+                      priority={true}
                     />
                   </motion.div>
                 </Link>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Lora, Metamorphous } from "next/font/google";
+import { Lora, Inika } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 
@@ -8,7 +8,8 @@ const inter = Lora({
   subsets: ["latin"],
 });
 
-export const metamorphouse = Metamorphous({
+
+export const inika = Inika({
   subsets: ['latin'],
   variable: '--font-metamorphous',
   weight: ['400'],
