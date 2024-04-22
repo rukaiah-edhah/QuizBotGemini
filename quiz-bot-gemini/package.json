@@ -19,6 +19,7 @@
     "@radix-ui/react-switch": "^1.0.3",
     "@radix-ui/react-toast": "^1.1.5",
     "@react-email/components": "^0.0.16",
+    "@types/validator": "^13.11.9",
     "@upstash/ratelimit": "^1.0.3",
     "@vercel/kv": "^1.0.1",
     "@vercel/postgres": "^0.8.0",
@@ -48,6 +49,7 @@
     "sonner": "^1.4.41",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
+    "validator": "^13.11.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
