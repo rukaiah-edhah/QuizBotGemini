@@ -15,7 +15,7 @@ export function ChatMessages({
                 {message.role === 'user' ? 
                 (<UserMessage>{message.content}</UserMessage>) :
                 question ? (
-                    <QuizAIMessage questions={quizQuestions} />
+                    <QuizAIMessage questions={message.content} />
                 ): (
                     <AICard>
                         <AIMessage>
