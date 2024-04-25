@@ -10,7 +10,7 @@ import { spinner } from './spinner';
 
 export function UserMessage({ children }: {children: React.ReactNode}){
     return(
-        <div className="group relative flex items-start md:-ml-12">
+        <div className="group relative flex items-start">
             <div className="flex h-8 w-8 shrink-0 select-none items-center justify-center rounded-md shadow-sm">
                 <FaUser className="w-4 h-4"/>
             </div>
@@ -30,12 +30,12 @@ export function AIMessage({
 }) {
     return(
         <div className={cn(
-            'group relative flex items-start md:-ml-12',
+            'group relative flex items-start -ml-12',
             className
         )}
         >
             <div className="flex h-8 w-8 shrink-0 select-none items-center justify-center rounded-md shadow-sm">
-                <ChatAiImage />
+                
             </div>
             <div className="ml-4 flex-1 space-y-2 overflow-hidden px-1">
                 {children}
@@ -52,7 +52,7 @@ export function AICard({
     showAvatar?: boolean
 }) {
     return(
-        <div className="group relative flex items-start md:-ml-12">
+        <div className="group relative flex items-start">
             <div className={cn(
                 'flex h-8 w-8 shrink-0 select-none items-center justify-center rounded-md shadow-sm',
                 !showAvatar && 'invisible',

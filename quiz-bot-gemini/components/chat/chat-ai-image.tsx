@@ -1,4 +1,4 @@
-import ai_bot from '@/public/AI.png';
+import ai_bot from '@/public/Quizzara.png';
 import Image from 'next/image';
 
 export default function ChatAiImage(){

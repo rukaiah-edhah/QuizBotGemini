@@ -6,8 +6,16 @@ const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || "");
 
 export const runtime = "edge";
 
-const buildGoogleGenAIPrompt = (messages: Message[]) => ({
-  contents: messages
+const buildGoogleGenAIPrompt = (messages: Message[]) => {
+  let content = [
+    // {
+    //   role: "system",
+    //   parts: [{text: escape("You are Quizzara")}]
+    // },
+    // {
+    //   context: "You are Quizzara"
+    // },
+    ...messages
     .filter((message) => ["user", "assistant"].includes(message.role))
     .map((message) => {
       // Validating message content by 1) ensureing each message content is a string
@@ -25,13 +33,19 @@ const buildGoogleGenAIPrompt = (messages: Message[]) => ({
         parts: [{ text: sanitizedContent }],
       };
     }),
-});
+  ]
+  console.log("content", content)
+  return {
+  contents: content,
+  // context: "You are Quizza"
+  }
+};
 
 export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
     const geminiStream = await genAI
-      .getGenerativeModel({ model: "gemini-pro" })
+      .getGenerativeModel({ model: "gemini-pro"})
       .generateContentStream(buildGoogleGenAIPrompt(messages));
 
     const stream = GoogleGenerativeAIStream(geminiStream);
