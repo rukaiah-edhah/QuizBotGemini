@@ -1,13 +1,14 @@
-export default function ChatHistorySheet({ list_items }: {list_items: string[]} ){
+import { Chat } from "@/lib/types"
+
+
+
+export default function ChatHistorySheet({ chats}: {chats: Chat[]}) {
+    if (!chats?.length) return null
+
     return(
         <>
-            {list_items.map((l) => (
-               <p 
-                   key={l}
-                   className="px-5 py-1 mt-2 rounded-full hover:bg-black/20 hover:cursor-pointer"
-               >
-                   {l}
-               </p>
+            {chats.map((chat, index) => (
+                <span key={index}>{chat.title}</span>
             ))}
         </>
     )
