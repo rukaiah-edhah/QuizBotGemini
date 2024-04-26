@@ -2,14 +2,28 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { GoogleGenerativeAIStream, Message, StreamingTextResponse } from "ai";
 import { escape } from "validator";
 
+interface Part {
+  text: string;
+}
+
+interface Content {
+  role: 'function' | 'user' | 'model';
+  parts: Part[];
+}
+
+interface GenerateContentRequest {
+  contents: Content[];
+}
+
+
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || "");
 
 export const runtime = "edge";
 
-const buildGoogleGenAIPrompt = (messages: Message[]) => {
+const buildGoogleGenAIPrompt = (messages: Message[]): GenerateContentRequest => {
   let content = [
     ...messages
-    .filter((message) => ["user", "assistant"].includes(message.role))
+    .filter((message) => ["user", "assistant", "function"].includes(message.role))
     .map((message) => {
       // Validating message content by 1) ensureing each message content is a string
       // 2) preventing long inputs that could be used in DoS attacks
@@ -22,15 +36,12 @@ const buildGoogleGenAIPrompt = (messages: Message[]) => {
       }
       const sanitizedContent: string = escape(message.content); // To prevent XSS attacks ;)
       return {
-        role: message.role === "user" ? "user" : "model",
+        role: message.role === "user" ? "user" :  (message.role === "assistant" ? "model" : "function"),
         parts: [{ text: sanitizedContent }],
       };
     }),
   ]
-  //console.log("content", content)
-  return {
-  contents: content,
-  }
+  return { contents: content as Content[] };
 };
 
 export async function POST(req: Request) {

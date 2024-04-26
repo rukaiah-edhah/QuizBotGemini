@@ -14,7 +14,7 @@ export default async function Navbar(){
         <nav className="fixed top-0 z-20 w-full bg-violet-200 text-black">
             <div className="flex flex-row items-center justify-between gap-2 px-4 py-5">
                 {user ? (
-                    <ChatHistory />
+                    <ChatHistory userId={""} />
                 ) : (<div></div>) }
                 <div className="flex flex-row gap-2">
                     <PiCirclesThreeFill className="w-6 h-6"/>
