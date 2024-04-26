@@ -19,7 +19,7 @@ export default function RandomGif() {
 
   useEffect(() => {
     setRandomGif(getRandomGif());
-  }, []);
+  }, [getRandomGif]);
 
   return (
     <div>

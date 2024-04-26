@@ -8,13 +8,6 @@ export const runtime = "edge";
 
 const buildGoogleGenAIPrompt = (messages: Message[]) => {
   let content = [
-    // {
-    //   role: "system",
-    //   parts: [{text: escape("You are Quizzara")}]
-    // },
-    // {
-    //   context: "You are Quizzara"
-    // },
     ...messages
     .filter((message) => ["user", "assistant"].includes(message.role))
     .map((message) => {
@@ -34,10 +27,9 @@ const buildGoogleGenAIPrompt = (messages: Message[]) => {
       };
     }),
   ]
-  console.log("content", content)
+  //console.log("content", content)
   return {
   contents: content,
-  // context: "You are Quizza"
   }
 };
 
