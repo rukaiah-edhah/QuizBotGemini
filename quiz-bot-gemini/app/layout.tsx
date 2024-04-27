@@ -1,19 +1,7 @@
 import type { Metadata } from "next";
-import { Lora, Inika } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
-
-const inter = Lora({ 
-  variable: '--font-inter',
-  subsets: ["latin"],
-});
-
-
-export const inika = Inika({
-  subsets: ['latin'],
-  variable: '--font-metamorphous',
-  weight: ['400'],
-});
+import { lora } from "@/lib/fonts";
 
 const metadata: Metadata = {
   title: "Quiz Bot Gemini",
@@ -27,7 +15,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={lora.className}>
         <main>
           {children}
         </main>

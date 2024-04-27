@@ -11,7 +11,7 @@ import {
 import { navItems, title, end } from "@/components/HomePage/Navbar";
 import { IoMdMenu} from "react-icons/io";
 import { PiCirclesThreeFill } from "react-icons/pi";
-import { inika } from "@/app/layout";
+import { inika } from "@/lib/fonts";
 
 
 export default function ResNavbar(){

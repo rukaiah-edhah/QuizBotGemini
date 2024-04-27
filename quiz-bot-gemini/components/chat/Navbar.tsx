@@ -1,7 +1,7 @@
 import { PiCirclesThreeFill } from "react-icons/pi";
 import Link from "next/link";
 import ChatHistory from "./Chathistory";
-import { inika } from "@/app/layout";
+import { lora } from "@/lib/fonts";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import {LoginLink, LogoutLink} from '@kinde-oss/kinde-auth-nextjs/components'
 import { Button } from "../ui/button";
@@ -19,7 +19,7 @@ export default async function Navbar(){
                 <div className="flex flex-row gap-2">
                     <PiCirclesThreeFill className="w-6 h-6"/>
                     <h1 className={`font-bold flex place-content-center
-                        ${inika.className}
+                        ${lora.className}
                     `}>
                         QuizBot Gemini
                     </h1>

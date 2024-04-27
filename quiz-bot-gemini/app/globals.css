@@ -68,8 +68,8 @@
 
 html {
   scroll-behavior: smooth;
-  font-family: var(--font-inter);
-  font-family: var(--font-metamorphous);
+  font-family: var(--font-lora);
+  font-family: var(--font-inika);
 }
 
 @layer base {

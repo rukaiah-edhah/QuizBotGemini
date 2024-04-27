@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { PiCirclesThreeFill } from "react-icons/pi";
 import ResNavbar from "./ResNavbar";
-import { inika } from "@/app/layout";
+import { inika } from "@/lib/fonts";
 
 export const navItems = [
     {
