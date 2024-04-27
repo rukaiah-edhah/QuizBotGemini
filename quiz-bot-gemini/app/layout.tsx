@@ -1,3 +1,4 @@
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
@@ -18,6 +19,7 @@ export default async function RootLayout({
       <body className={lora.className}>
         <main>
           {children}
+          <SpeedInsights />
         </main>
         <Toaster />
       </body>
