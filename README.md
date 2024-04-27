@@ -1,2 +1,2 @@
 # QuizBot Gemini
-An HR training chatbot that uses Gemini capabilities to let users test their knowledge by choosing a topic and receiving related questions.
+A chatbot that uses Gemini capabilities to quiz users and test their knowledge on their chosen topic by asking related questions.
