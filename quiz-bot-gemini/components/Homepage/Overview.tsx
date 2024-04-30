@@ -28,7 +28,7 @@ export default function Overview() {
         <h2 className="text-5xl font-bold mb-10 text-center">
           Your Educational Companion
         </h2>
-        <div className="fleçx justify-center">
+        <div className="flex justify-center">
           {/* <NextVideo
             src={PlaceholderVideo}
             loop
